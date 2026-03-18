@@ -2,6 +2,8 @@ this program calculates the actual cumulative distance across a network of highw
 
 When navigating a map where every road has a different "cost" (length), we use **Dijkstra’s Algorithm** 
 
+The dataset I used is a CSV file of city distances obtained from Kaggle https://www.kaggle.com/datasets/kbdharun/a-star-algorithm-route-planning-dataset
+
 ## Implementation Details
 * **Graph Representation:** I converted the CSV data into an "Adjacency List." Each city is a node, and the roads are edges with weights representing kilometers.
 * **The Priority Queue:** To keep the search fast, the program uses a "Min-Heap." 
