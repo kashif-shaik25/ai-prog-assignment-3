@@ -1,1 +1,38 @@
-# UGV Battlefield Pathfinding Simulation## Project OverviewThis repository contains a Python-based simulation for an Unmanned Ground Vehicle (UGV) navigating a 70x70 km battlefield grid. The simulation focuses on finding the mathematically optimal (shortest) path from a user-defined start point to a goal point while navigating around randomly generated obstacles.## Core Algorithm: A-Star (A*)The navigation logic is powered by the **A* search algorithm. A* is a heuristic-based search that is widely used in robotics for its efficiency and guarantee of finding the shortest path (provided the heuristic is admissible).### The LogicThe algorithm evaluates nodes based on the formula:f(n) = g(n) + h(n)* g(n): The actual cost (distance) from the starting node to the current node.* h(n): The heuristic estimate of the distance from the current node to the goal. In this simulation, we use Euclidean distance to allow for 8-directional movement (including diagonals).## Features* 70x70 Grid Representation: Simulates a small-scale battlefield map.* Dynamic Obstacle Density: Includes three pre-set levels of obstacle interference:* Low (10%): Minimal obstructions, high speed.* Medium (20%): Standard operational environment.* High (35%): Dense urban or forest environment with complex choke points.* Path Tracing: Real-time visualization of the calculated route using Matplotlib.## Measures of Effectiveness (MoE)To evaluate the performance of the UGV and the algorithm, the program outputs the following metrics for every run:1.  Path Length: The total distance traveled by the UGV (measured in steps/distance units).2.  Execution Time: The time in milliseconds required for the algorithm to compute the optimal route.3. Nodes Explored: A measure of computational efficiency—specifically, how many cells the algorithm had to "check" before concluding the path.4.  Path Feasibility: A boolean check to determine if a valid path exists under high-density conditions.## Technical Requirements* Python 3.x* NumPy: For grid-matrix manipulation.* Matplotlib: For visual rendering of the map and path.## How to Run1. Ensure you have the dependencies installed:```bashpip install numpy matplotlib
+# UGV Pathfinding Simulation
+
+## Overview
+This project implements a pathfinding system for an Unmanned Ground Vehicle (UGV) operating on a 70x70 km grid. The goal is to calculate the most efficient route from a designated start point to a goal point while navigating around randomly generated obstacles of varying densities.
+
+## Design Methodology
+The core logic relies on the **A* (A-Star) Search Algorithm**. I chose A* because it provides a mathematically optimal path while remaining computationally efficient by using heuristics to guide the search.
+
+### Pathfinding Logic
+The algorithm evaluates the "cost" of potential paths using the standard formula:
+**f(n) = g(n) + h(n)**
+
+* **g(n):** The actual distance traveled from the start to the current node.
+* **h(n):** The estimated distance to the goal (Heuristic). 
+
+To allow for more realistic movement, the simulation supports **8-way adjacency** (horizontal, vertical, and diagonal moves). I utilized **Euclidean distance** for the heuristic to ensure the UGV prioritizes diagonal shortcuts when they are available, as this results in a shorter total distance than standard grid-based movement.
+
+## Features
+* **Grid Map:** A 70x70 matrix representing the operational area.
+* **Variable Obstacle Density:** The system generates three levels of environmental complexity:
+    * **Low (10%):** Sparse obstacles.
+    * **Medium (20%):** Moderate clutter.
+    * **High (35%):** Dense environment testing the limits of the pathfinder.
+* **Visualization:** A visual trace of the final path is rendered using Matplotlib, showing the start, the goal, and the obstacles.
+
+## Measures of Effectiveness (MoE)
+To evaluate the algorithm’s performance, the simulation tracks and outputs four primary metrics:
+1.  **Path Length:** Total distance units covered.
+2.  **Execution Time:** The time (in milliseconds) required to compute the solution.
+3.  **Nodes Explored:** The number of grid cells analyzed, representing the algorithm's search efficiency.
+4.  **Feasibility:** A check to verify if a valid path was found given the specific obstacle layout.
+
+## Setup and Usage
+The project is written in Python 3 and requires `numpy` for grid management and `matplotlib` for visualization.
+
+### Installation
+```bash
+pip install numpy matplotlib
